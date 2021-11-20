@@ -2,27 +2,13 @@
 
 #include <uima/api.hpp>
 #include <iostream>
-#include <pcl/point_types.h>
-#include <rs/types/all_types.h>
-#include <rs/scene_cas.h>
-#include <rs/utils/time.h>
-
-#if CV_MAJOR_VERSION == 2
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/core/core.hpp>
-#include <opencv2/ml/ml.hpp>
-#elif CV_MAJOR_VERSION == 3
+#include <robosherlock/types/all_types.h>
+#include <robosherlock/scene_cas.h>
+#include <robosherlock/utils/time.h>
 #include <opencv2/core.hpp>
-#include <opencv2/highgui.hpp>
-#include <opencv2/imgproc.hpp>
-#include <opencv2/ml.hpp>
-#endif
-
 #include<ros/package.h>
-#include<boost/filesystem.hpp>
 #include <rs_addons/classifiers/RSRF.h>
-#include <rs/DrawingAnnotator.h>
+#include <robosherlock/DrawingAnnotator.h>
 
 using namespace uima;
 

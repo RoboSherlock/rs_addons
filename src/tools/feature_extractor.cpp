@@ -4,17 +4,12 @@
 #include <ros/ros.h>
 #include <opencv2/opencv.hpp>
 
-#if CV_MAJOR_VERSION == 2
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/core/core.hpp>
-#include <opencv2/ml/ml.hpp>
-#elif CV_MAJOR_VERSION == 3
+
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/ml.hpp>
-#endif
+
 
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/image_encodings.h>
@@ -52,15 +47,13 @@ void readClassLabel(std::string obj_file_path,
   cv::FileStorage fs;
   fs.open(obj_file_path, cv::FileStorage::READ);
   std::vector<std::string> classes;
-#if CV_MAJOR_VERSION == 2
-  fs["classes"] >> classes;
-#elif CV_MAJOR_VERSION == 3
+
   cv::FileNode classesNode = fs["classes"];
   cv::FileNodeIterator it = classesNode.begin(), it_end = classesNode.end();
   for(; it != it_end; ++it) {
     classes.push_back(static_cast<std::string>(*it));
   }
-#endif
+
   if(classes.empty()) {
     std::cout << "Object file has no classes defined" << std::endl;
   }
@@ -68,15 +61,13 @@ void readClassLabel(std::string obj_file_path,
     double clslabel = 1;
     for(auto c : classes) {
       std::vector<std::string> subclasses;
-#if CV_MAJOR_VERSION == 2
-      fs[c] >> subclasses;
-#elif CV_MAJOR_VERSION == 3
+
       cv::FileNode subClassesNode = fs[c];
       cv::FileNodeIterator it = subClassesNode.begin(), it_end = subClassesNode.end();
       for(; it != it_end; ++it) {
         subclasses.push_back(static_cast<std::string>(*it));
       }
-#endif
+
       //To set the map between string and double classlabel
       objectToClassLabelMap.push_back(std::pair< std::string, float >(c, clslabel));
 

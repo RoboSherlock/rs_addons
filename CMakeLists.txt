@@ -17,7 +17,7 @@ endif(json_prolog_FOUND)
 find_package(Caffe QUIET)
 find_package(aruco QUIET)
 find_package(MPI QUIET)
-find_package(RapidJSON REQUIRED) 
+#find_package(rapidjson_ros REQUIRED) 
 
 
 if(Caffe_FOUND)
@@ -63,7 +63,7 @@ catkin_package(
     )
 
 include_directories(
-    ${RapidJSON_INCLUDE_DIRS}
+   # ${rapidjson_ros_INCLUDE_DIRS}
     ${RS_INCLUDE_DIRS_LIST}
     ${catkin_INCLUDE_DIRS}
     )
@@ -94,8 +94,8 @@ if(aruco_FOUND)
     add_definitions( -DARUCO_FOUND)
     message(STATUS "Building AR Markers Detector")
     include_directories(${aruco_INCLUDE_DIRS})
-    rs_add_library(rs_arMarkersDetector src/ARMarkersDetector.cpp)
-    target_link_libraries(rs_arMarkersDetector ${CATKIN_LIBRARIES} ${aruco_LIBS})
+    #[[rs_add_library(rs_arMarkersDetector src/ARMarkersDetector.cpp)
+    target_link_libraries(rs_arMarkersDetector ${CATKIN_LIBRARIES} ${aruco_LIBS})]]
 else(aruco_FOUND)
     message(WARNING "Aruco not found. AR Markers Detector will NOT be built")
 endif(aruco_FOUND)
@@ -154,19 +154,21 @@ target_link_libraries(rs_knnAnnotator rs_classifiers
     ${CATKIN_LIBRARIES}
     ${OpenCV_LIBRARIES})
 
+#[[
 rs_add_library(rs_unrealGTAnnotator src/UnrealGTAnnotator.cpp)
 target_link_libraries(rs_unrealGTAnnotator
     ${catkin_LIBRARIES}
     ${OpenCV_LIBRARIES}
     )
+]]
 
 
 # this needs to be renamed...if this is just for running test
 # data trhough the system it can an executable
-rs_add_library(rs_classifyOfflineAnnotator src/ClassifyOfflineAnnotator.cpp)
+#[[rs_add_library(rs_classifyOfflineAnnotator src/ClassifyOfflineAnnotator.cpp)
 target_link_libraries(rs_classifyOfflineAnnotator rs_classifiers
     ${CATKIN_LIBRARIES}
     ${OpenCV_LIBRARIES}
-    ${Boost_LIBRARIES})
+    ${Boost_LIBRARIES})]]
 
-add_subdirectory(src/annotators)
+#add_subdirectory(src/annotators)

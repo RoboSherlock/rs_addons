@@ -10,23 +10,18 @@
 #include <ros/package.h>
 
 #include <opencv2/opencv.hpp>
-#if CV_MAJOR_VERSION == 2
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/core/core.hpp>
-#include <opencv2/ml/ml.hpp>
-#elif CV_MAJOR_VERSION == 3
+
 #include <opencv2/core.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/ml.hpp>
-#endif
 
-#include <rs/scene_cas.h>
-#include <rs/types/all_types.h>
-#include <rs/scene_cas.h>
-#include <rs/utils/time.h>
-#include <rs/DrawingAnnotator.h>
+
+#include <robosherlock/scene_cas.h>
+#include <robosherlock/types/all_types.h>
+#include <robosherlock/scene_cas.h>
+#include <robosherlock/utils/time.h>
+#include <robosherlock/DrawingAnnotator.h>
 
 #include <rs_addons/classifiers/RSKNN.h>
 #include <uima/api.hpp>
@@ -76,19 +71,8 @@ void RSKNN:: classifyKNN(std::string train_matrix_name, std::string train_label_
   std::cout << "size of test matrix :" << test_matrix.size() << std::endl;
   std::cout << "size of test label" << test_label.size() << std::endl;
 
-#if CV_MAJOR_VERSION == 2
-  CvKNearest *knncalld = new CvKNearest;
-
-  //Train the classifier...................................
-  knncalld->train(train_matrix, train_label, cv::Mat(), false, default_k, false);
-
-  //To get the value of k.............
-  int k_max = knncalld->get_max_k();
-  //cv::Mat neighborResponses, bestResponse, distances;
-
-#elif CV_MAJOR_VERSION == 3
   int k_max = knncalld->getDefaultK();
-#endif
+
 
   //convert test label matrix into a vector.......................
   std::vector<double> con_test_label;
@@ -99,13 +83,9 @@ void RSKNN:: classifyKNN(std::string train_matrix_name, std::string train_label_
   std::vector<int> predicted_label;
 
   for(int i = 0; i < test_label.rows; i++) {
-#if CV_MAJOR_VERSION == 2
-    // double res = knncls->find_nearest(test_matrix.row(i), k,bestResponse,neighborResponses,distances);
-    double res = knncalld->find_nearest(test_matrix.row(i), k_max);
-#elif CV_MAJOR_VERSION == 3
 
-    double res = knncalld->findNearest(test_matrix.row(i), k_max, cv::noArray());
-#endif
+      double res = knncalld->findNearest(test_matrix.row(i), k_max, cv::noArray());
+
 
     int prediction = res;
     predicted_label.push_back(prediction);

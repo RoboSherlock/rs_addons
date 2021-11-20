@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+<name>rs_addons</name>
+<version>0.0.0</version>
+<description>The RoboSherlock addons package. Collection of annotators under development</description>
+
+<maintainer email="balintbe@cs.uni-bremen.de">Ferenc Balint-Benczedi</maintainer>
+
+
+<license>Apache 2.0</license>
+
+<author email="balintbe@cs.uni-bremen.de">Ferenc Balint-Benczedi</author>
+
+
+<buildtool_depend>catkin</buildtool_depend>
+
+ <depend>robosherlock</depend>
+ <depend>robosherlock_msgs</depend>
+ <depend>json_prolog</depend>
+ <depend>rapidjson_ros</depend>
+<export>
+</export>
+
+</package>

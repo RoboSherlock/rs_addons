@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: rs_addons
+Description: Description of rs_addons
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: robosherlock
