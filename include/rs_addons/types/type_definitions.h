@@ -4,6 +4,5 @@
 #ifndef __RS_ADDONS_TYPE_DEFINITIONS_H__
 #define __RS_ADDONS_TYPE_DEFINITIONS_H__
 
-#define RS_ADDONS_ADDONS_TESTTYPE "rs_addons.addons.TestType"
 
 #endif /* __RS_ADDONS_TYPE_DEFINITIONS_H__ */

@@ -5,7 +5,6 @@
 #define __RS_ADDONS_ALL_TYPES_H__
 
 #include <rs_addons/types/type_definitions.h>
-#include <rs_addons/types/addons.h>
 
 
 #endif /* __RS_ADDONS_ALL_TYPES_H__ */
