@@ -2,7 +2,7 @@
 
 // python
 #include <boost/python.hpp>
-#include <boost/numpy.hpp>
+#include <boost/python/numpy.hpp>
 
 // opencv
 #include <opencv2/opencv.hpp>
