@@ -214,9 +214,9 @@ void RSKNN::calculateCaffeFeatureKNN(std::string set_mode, std::string feature_u
     }
 }
 
-void RSKNN::annotate_hypotheses(uima::CAS &tcas, std::string class_name, std::string feature_name, rs::ObjectHypothesis &cluster, std::string set_mode, double &confi)
-{ if(confi> 0.6)
-    {rs::Classification classResult = rs::create<rs::Classification>(tcas);
+void RSKNN::annotate_hypotheses(uima::CAS &tcas, std::string class_name, std::string feature_name, rs::ObjectHypothesis &cluster, std::string set_mode, double &confi) {
+    if (confi > 0.6) {
+        rs::Classification classResult = rs::create<rs::Classification>(tcas);
         classResult.classname.set(class_name);
         classResult.classifier("k-Nearest Neighbor");
         classResult.featurename(feature_name);
@@ -243,7 +243,7 @@ void RSKNN::annotate_hypotheses(uima::CAS &tcas, std::string class_name, std::st
             outError("You should set the parameter (set_mode) as CL or GT");
         }
     }
-
+}
 
     RSKNN::~RSKNN() {
     }
